@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multilingual NL to SQL Generator</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>Natural Language to SQL Generator</h1>
+        <p class="subtitle">
+          Ask in English, हिन्दी, or मराठी and get a SQL query
+        </p>
+      </header>
+
+      <!-- Input Section -->
+      <section class="card">
+        <div class="input-header">
+          <label class="input-label">Your Question</label>
+          <div class="lang-toggle">
+            <span>Language:</span>
+            <button type="button" class="lang-btn active" data-lang="auto">
+              Auto Detect
+            </button>
+            <button type="button" class="lang-btn" data-lang="mr">मराठी</button>
+            <button type="button" class="lang-btn" data-lang="hi">
+              हिन्दी
+            </button>
+            <button type="button" class="lang-btn" data-lang="en">
+              English
+            </button>
+          </div>
+        </div>
+
+        <textarea
+          id="queryInput"
+          placeholder="e.g. कॉम्प्युटर विभागातील सर्व विद्यार्थी दाखवा&#10;e.g. Show all students with GPA greater than 9.0&#10;e.g. Add a student named Rahul with ID 101 and age 20"
+          rows="4"
+        ></textarea>
+
+        <div class="input-footer">
+          <span class="hint">Ctrl + Enter to run</span>
+          <button type="button" class="btn-run" id="generateBtn">
+            Generate SQL
+          </button>
+        </div>
+      </section>
+
+      <!-- Error message -->
+      <div class="error-box" id="errorBox" style="display: none">
+        <strong>⚠ Error:</strong> <span id="errorMsg"></span>
+      </div>
+
+      <!-- SQL Output -->
+      <section
+        class="card output-section"
+        id="sqlSection"
+        style="display: none"
+      >
+        <div class="output-header">
+          <div class="output-title">
+            <span class="section-label">Generated SQL</span>
+            <span class="lang-badge" id="langBadge"></span>
+          </div>
+          <button type="button" class="btn-copy" id="copySqlBtn">Copy</button>
+        </div>
+        <div class="code-block">
+          <pre><code id="sqlCode"></code></pre>
+        </div>
+        <div class="meta-row" id="sqlMeta"></div>
+
+        <!-- NLP detail accordion -->
+        <details class="nlp-accordion">
+          <summary>How was this query understood?</summary>
+          <div class="nlp-body" id="nlpBody"></div>
+        </details>
+      </section>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>
